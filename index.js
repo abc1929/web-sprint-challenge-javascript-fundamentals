@@ -156,21 +156,28 @@ function consume(a, b, cb) {
 /* 🦁🦁🦁 Step 2: Create several functions to callback with consume(); 🦁🦁🦁 */
 // 🦁🦁🦁 Use add to return the sum of two numbers 🦁🦁🦁
 
-function add(a, b) {
-  return a + b;
-}
+// function add(a, b) {
+//   return a + b;
+// }
+
+const add = (a,b) => a+b;
 
 // 🦁🦁🦁 Use multiply to return the product of two numbers 🦁🦁🦁
 
-function multiply(a, b) {
-  return a * b;
-}
+// function multiply(a, b) {
+//   return a * b;
+// }
+
+const multiply = (a,b) => a*b;
 
 // 🦁🦁🦁 Use greeting to accept a first and last name and return "Hello {first-name} {last-name}, nice to meet you!" 🦁🦁🦁
 
-function greeting(a, b) {
-  return `Hello ${a} ${b}, nice to meet you!`;
-}
+// function greeting(a, b) {
+//   return `Hello ${a} ${b}, nice to meet you!`;
+// }
+
+const greeting = (a,b) => `Hello ${a} ${b}, nice to meet you!`
+
 
 // 🦁🦁🦁 Step 3: Check your work by un-commenting the following calls to consume(): 🦁🦁🦁
 // ⬇️ ⬇️ ⬇️ ⬇️ ⬇️ ⬇️ ⬇️ ⬇️ ⬇️ ⬇️ ⬇️
@@ -217,7 +224,7 @@ CuboidMaker.prototype.surfaceArea = function () {
   Create an object called cuboid that uses the new keyword to use our CuboidMaker constructor
   Add properties and values of length: 4, width: 5, and height: 5 to cuboid. */
 
-const cuboid = new CuboidMaker(4, 5, 5);
+const cuboid = new CuboidMaker({length: 4, width: 5, height: 5});
 
 // 🐴🐴🐴 Test your volume and surfaceArea methods by uncommenting the logs below: 🐴🐴🐴
 // ⬇️ ⬇️ ⬇️ ⬇️ ⬇️ ⬇️ ⬇️ ⬇️
@@ -245,13 +252,37 @@ class CuboidMakerTwo {
   }
 }
 
-const cuboidTwo = new CuboidMakerTwo(4, 5, 5);
+const cuboidTwo = new CuboidMakerTwo({length: 4, width: 5, height: 5});
 
 //🦄🦄🦄 Test your volume and surfaceArea methods by uncommenting the logs below: 🦄🦄🦄
 console.log(cuboidTwo.volume()); // 100
 console.log(cuboidTwo.surfaceArea()); // 130
 
 // 🦄 💪 Stretch Task: Extend the base class CuboidMaker with a sub class called CubeMaker.  Find out the formulas for volume and surface area for cubes and create those methods using the dimension properties from CuboidMaker.  Test your work by logging out your volume and surface area. 🦄 💪
+
+
+function CubeMaker(l){
+  CuboidMaker.call(this,{length:l,width:l,height:l})
+}
+CubeMaker.prototype = Object.create(CuboidMaker.prototype) 
+
+const cube = new CubeMaker(7);
+console.log(cube.volume()); // 343
+console.log(cube.surfaceArea()); // 294
+
+
+class CubeMakerTwo extends CuboidMakerTwo {
+  constructor(l){
+    super({length:l,width:l,height:l})
+  }
+}
+
+
+const cubeTwo = new CubeMakerTwo(7);
+console.log(cubeTwo.volume()); // 343
+console.log(cubeTwo.surfaceArea()); // 294
+
+
 
 /* 🛑🛑🛑🛑🛑 Please do not modify anything below this line 🛑🛑🛑🛑🛑 */
 function foo() {
